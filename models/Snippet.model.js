@@ -15,6 +15,11 @@ const shortid = require('shortid');
 */ 
 
 /* Create */
+/**
+ * Inserts a new snippet into the db.
+ * @param {Snippet} newSnippet - the data to create the snippet with
+ * @returns {Promise<Snippet>} the created snippet
+ */
 exports.insert = async ({ author, code, title, description, language }) => {
     try {
         if(!author || !code || !title || !description || !language) {
