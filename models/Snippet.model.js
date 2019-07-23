@@ -3,6 +3,21 @@ const path = require('path');
 /* Create */
 
 /* Read */
+/** 
+    * @typedef {Object} Snippet  
+    * @property {string} id  
+    * @property {string} author  
+    * @property {string} code  
+    * @property {string} title  
+    * @property {string} description  
+    * @property {string} language  
+    * @property {string[]} comments  
+    * @property {number} favorites  
+    * Selects snippets from database  
+    * Can accept optional query objects to filter results  
+    * @param {Object} [query]  
+    * @returns {Promise<Snippet[]>} array of Snippet Objects  
+*/ 
 exports.select = async (query = {}) => {
     try {
         /**
