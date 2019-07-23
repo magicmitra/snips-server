@@ -1,8 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
-/* Create */
 
-/* Read */
 /** 
     * @typedef {Object} Snippet  
     * @property {string} id  
@@ -12,7 +10,19 @@ const path = require('path');
     * @property {string} description  
     * @property {string} language  
     * @property {string[]} comments  
-    * @property {number} favorites  
+    * @property {number} favorites 
+*/ 
+
+/* Create */
+exports.insert = async (newSnippet) => {
+    /**
+     * Grab data from newSnippet (validate)
+     * make newSnippet a proper object
+     */
+};
+
+/* Read */
+/** 
     * Selects snippets from database  
     * Can accept optional query objects to filter results  
     * @param {Object} [query]  
