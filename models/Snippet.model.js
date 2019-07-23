@@ -32,7 +32,7 @@ exports.select = async (query = {}) => {
             Object.keys(query).every(key => query[key] === snippet[key]));
         return filtered;
     } catch(err) {
-        console.log('fucking error');
+        console.log('error');
         throw err;
     }
 };
