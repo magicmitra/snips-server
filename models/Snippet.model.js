@@ -1,5 +1,6 @@
 const fs = require('fs').promises;
 const path = require('path');
+const shortid = require('shortid');
 
 /** 
     * @typedef {Object} Snippet  
@@ -14,11 +15,31 @@ const path = require('path');
 */ 
 
 /* Create */
-exports.insert = async (newSnippet) => {
-    /**
-     * Grab data from newSnippet (validate)
-     * make newSnippet a proper object
-     */
+exports.insert = async ({ author, code, title, description, language }) => {
+    try {
+        if(!author || !code || !title || !description || !language) {
+            throw Error('ERROR: must provide all parameters/properties');
+        }
+        // read snippets.json
+        const dbpath = path.join(__dirname, '..', 'db', 'snippets.json');
+        const snippets = JSON.parse(await fs.readFile(dbpath));
+        snippets.push({
+            id: shortid.generate(),
+            author,
+            code,
+            title,
+            description,
+            language,
+            comments: [],
+            favorites: 0,
+        });
+        // write back to file
+        await fs.writeFile(dbpath, JSON.stringify(snippets));
+        return snippets[snippets.length - 1];
+    } catch(err) {
+        console.log(err);
+        throw err;
+    }
 };
 
 /* Read */
