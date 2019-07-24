@@ -74,5 +74,42 @@ exports.select = async (query = {}) => {
 };
 
 /* Update */
+exports.update = async (id, query) => {
+    try {
+        // read db
+        // find snippet that matches id
+        // use query to set update fields
+        // rewrite new object in array with updated object 
+        // write back to the db
+        const dbpath = path.join(__dirname, '..', 'db', 'snippets.json');
+        const snippets = await fs.readFile(dbpath);
+        const parsed = JSON.parse(snippets);
+        const restOfArray = parsed.filter(snippet => snippet.id !== id);
+        const updatedObj = parsed.filter(snippet => snippet.id === id);
+        Object.keys(query).every(key => updatedObj[0][key] = query[key]);
+        restOfArray.push(updatedObj[0]);
+        await fs.writeFile(dbpath, JSON.stringify(restOfArray));
+        return restOfArray;
+    } catch(err) {
+        console.error(err);
+        throw err;
+    }
+};
 
 /* Delete */
+exports.delete = async (id) => {
+    try {
+        // read db
+        // filter snippets for everything except snippet.id === id
+        // write back to db
+        const dbpath = path.join(__dirname, '..', 'db', 'snippets.json');
+        const snippets = await fs.readFile(dbpath);
+        const parsed = JSON.parse(snippets);
+        const filtered = parsed.filter(snippet => snippet.id !== id); 
+        await fs.writeFile(dbpath, JSON.stringify(filtered));
+        return filtered;
+    } catch(err) {
+        console.error(err);
+        throw err;
+    }
+};

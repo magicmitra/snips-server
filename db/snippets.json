@@ -1,15 +1,5 @@
 [
   {
-    "id": "1",
-    "author": "Andrew",
-    "code": "// Welcome to JS!",
-    "title": "single-line.js",
-    "description": "This is how you do a single line comment in JS",
-    "language": "javascript",
-    "comments": [],
-    "favorites": 0
-  },
-  {
     "id": "2",
     "author": "Andrew",
     "code": "for (var i = 0; i < 5; i++) {\n  setTimeout(function() {\n    console.log(i);\n  }, 1000);\n}",
@@ -50,9 +40,9 @@
     "favorites": 0
   },
   {
-    "id": "qx1EmcNFu",
-    "author": "MF Jones",
-    "code": "code",
+    "id": "9Au3Q_y7w",
+    "author": "Fuckereth Jones",
+    "code": "hello world",
     "title": "test.txt",
     "description": "bruh damn",
     "language": "english",
@@ -60,12 +50,12 @@
     "favorites": 0
   },
   {
-    "id": "BT_o8Zxm5",
-    "author": "Fucker Jones",
-    "code": "code",
-    "title": "test.txt",
-    "description": "bruh damn",
-    "language": "english",
+    "id": "1",
+    "author": "Maney Mayne",
+    "code": "// Welcome to JS!",
+    "title": "single-line.js",
+    "description": "This is how you do a single line comment in JS",
+    "language": "Ruby on Rails",
     "comments": [],
     "favorites": 0
   }
