@@ -1,31 +1,12 @@
 const express = require('express');
+const cors = require('cors');
+const mainRoute = require('./routes/mainRoute');
 
 const app = express();
-
-app.get('/', (req, res) => {
-    res.send('snips');
-});
-
-/* Snippets routes */
-// POST snippets
-app.post('/api/snippets', (req, res) => {
-
-});
-
-// GET snippets
-app.get('/api/snippets', (req, res) => {
-
-});
-
-// PATCH snippets/:id
-app.patch('/api/snippets/:id', (req, res) => {
-
-});
-
-// DELETE snippets/:id
-app.delete('/api/snippets/:id', (req, res) => {
-
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cors());
+app.use(mainRoute); // router
 
 app.listen(5000, () => { console.log('server running on port 5000') });
 

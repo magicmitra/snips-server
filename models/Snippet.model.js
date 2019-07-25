@@ -20,7 +20,8 @@ const shortid = require('shortid');
  * @param {Snippet} newSnippet - the data to create the snippet with
  * @returns {Promise<Snippet>} the created snippet
  */
-exports.insert = async ({ author, code, title, description, language }) => {
+exports.insert = async (query) => {
+    const { author, code, title, description, language } = query;
     try {
         if(!author || !code || !title || !description || !language) {
             throw Error('ERROR: must provide all parameters/properties');
