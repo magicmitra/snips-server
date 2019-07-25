@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const snips = require('../models/Snippet.model');
+const snipController = require('../controllers/snippetsController');
 
 router.get('/', (req, res) => {
     res.send('snips');
@@ -7,27 +7,15 @@ router.get('/', (req, res) => {
 
 /* Snippets routes */
 // POST snippets
-router.post('/api/snippets', async (req, res) => {
-    const snippet = await snips.insert(req.body);
-    res.send(snippet);
-});
+router.post('/api/snippets', snipController.createSnippet);
 
 // GET snippets
-router.get('/api/snippets', async (req, res) => {
-    const snippets = await snips.select();
-    res.send(snippets);
-});
+router.get('/api/snippets', snipController.readSnippet);
 
 // PATCH snippets/:id
-router.patch('/api/snippets/:id', async (req, res) => {
-    const snippets = await snips.update(req.params.id, req.body);
-    res.send(snippets);
-});
+router.patch('/api/snippets/:id', snipController.updateSnippet);
 
 // DELETE snippets/:id
-router.delete('/api/snippets/:id', async (req, res) => {
-    const snippets = await snips.delete(req.params.id);
-    res.send(snippets);
-});
+router.delete('/api/snippets/:id', snipController.deleteSnippet);
 
 module.exports = router;
