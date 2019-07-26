@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const shortid = require('shortid');
+const errorHTTPStatus = require('../utils/errorHTTPStatus');
 
 /** 
     * @typedef {Object} Snippet  
@@ -69,8 +70,7 @@ exports.select = async (query = {}) => {
             Object.keys(query).every(key => query[key] === snippet[key]));
         return filtered;
     } catch(err) {
-        console.log('error');
-        throw err;
+        throw new errorHTTPStatus('database error', 500);
     }
 };
 

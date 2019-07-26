@@ -1,4 +1,5 @@
 const snips = require('../models/Snippet.model');
+const errorHTTPStatus = require('../utils/errorHTTPStatus');
 
 exports.createSnippet = async (req, res) => {
     const snippet = await snips.insert(req.body);
@@ -21,7 +22,16 @@ exports.deleteSnippet = async (req, res) => {
 };
 
 exports.getSnippetById = async (req, res) => {
-    console.log(req.params);
-    const snip = await snips.select(req.params);
+    try {
+        console.log(req.params);
+        const snip = await snips.select(req.params);
+        if(snip.length === 0) {
+            throw new errorHTTPStatus('ID Does not exist', 404);
+    }
     res.send(snip[0]);
+    } catch(err) {
+        if(err instanceof errorHTTPStatus)
+            res.status(err.status).send(err.message);
+        else res.status(500).send('server error');
+    }
 };
