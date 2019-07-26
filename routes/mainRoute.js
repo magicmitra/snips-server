@@ -11,6 +11,7 @@ router.post('/api/snippets', snipController.createSnippet);
 
 // GET snippets
 router.get('/api/snippets', snipController.readSnippet);
+router.get('/api/snippets/:id', snipController.getSnippetById);
 
 // PATCH snippets/:id
 router.patch('/api/snippets/:id', snipController.updateSnippet);

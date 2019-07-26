@@ -19,3 +19,8 @@ exports.deleteSnippet = async (req, res) => {
     const snippets = await snips.delete(req.params.id);
     res.send(snippets);
 };
+
+exports.getSnippetById = async (req, res) => {
+    const snip = await await snip.select({ id: req.query.params });
+    return snip;
+};
