@@ -8,6 +8,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(mainRoute); // router
 
-app.listen(process.event.PORT || 5000, () => { console.log('server running on port 5000') });
+app.listen(process.env.PORT || 5000, () => { console.log('server running on port 5000') });
 
 // SHIFT + ALT + F to use prettier
