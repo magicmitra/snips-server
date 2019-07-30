@@ -87,6 +87,9 @@ exports.update = async (id, query) => {
         const parsed = JSON.parse(snippets);
         const restOfArray = parsed.filter(snippet => snippet.id !== id);
         const updatedObj = parsed.filter(snippet => snippet.id === id);
+        if(!updatedObj.length) {
+            throw new errorHTTPStatus('ID does not exist', 400);
+        }
         Object.keys(query).every(key => updatedObj[0][key] = query[key]);
         restOfArray.push(updatedObj[0]);
         await fs.writeFile(dbpath, JSON.stringify(restOfArray));
@@ -106,6 +109,10 @@ exports.delete = async (id) => {
         const dbpath = path.join(__dirname, '..', 'db', 'snippets.json');
         const snippets = await fs.readFile(dbpath);
         const parsed = JSON.parse(snippets);
+        const deletedSnip = parsed.filter(snippet => snippet.id === id);
+        if(!deletedSnip.length) {
+            throw new errorHTTPStatus('ID does not exist', 400);
+        }
         const filtered = parsed.filter(snippet => snippet.id !== id); 
         await fs.writeFile(dbpath, JSON.stringify(filtered));
         return filtered;

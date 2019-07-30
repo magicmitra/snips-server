@@ -12,13 +12,21 @@ exports.readSnippet =  async (req, res) => {
 };
 
 exports.updateSnippet = async (req, res) => {
-    const snippets = await snips.update(req.params.id, req.body);
-    res.send(snippets);
+    try {
+        const snippets = await snips.update(req.params.id, req.body);
+        res.send(snippets);
+    } catch(err) {
+        res.send(err);
+    }
 };
 
 exports.deleteSnippet = async (req, res) => {
-    const snippets = await snips.delete(req.params.id);
-    res.send(snippets);
+    try{
+        const snippets = await snips.delete(req.params.id);
+        res.send(snippets);
+    } catch(err) {
+        res.send(err);
+    }
 };
 
 exports.getSnippetById = async (req, res) => {
